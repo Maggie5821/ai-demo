@@ -13,11 +13,17 @@ export default function App() {
     setQuestion("");
 
     try {
-      const res = await fetch("/api/ask", {
+      // const res = await fetch("/api/ask", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json" },
+      //   body: JSON.stringify({ prompt: question }),
+      // });
+      const res = await fetch("http://localhost:3001/api/ask", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ prompt: question }),
       });
+
       const data = await res.json();
       setChat((prev) => [...prev, { role: "assistant", content: data.text }]);
     } catch (err) {
